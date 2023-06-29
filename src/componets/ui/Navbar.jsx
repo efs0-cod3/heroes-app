@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link, NavLink } from 'react-router-dom';
 
 
@@ -29,6 +29,12 @@ export const Navbar = () => {
                         to="/dc"
                     >
                         DC
+                    </NavLink>
+                    <NavLink 
+                        className="nav-item nav-link" 
+                        to="/search"
+                    >
+                        Search
                     </NavLink>
                 </div>
             </div>
