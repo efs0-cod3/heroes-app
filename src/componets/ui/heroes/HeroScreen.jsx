@@ -27,6 +27,7 @@ export const HeroScreen = () => {
           src={`/assets/heroes/${id}.jpg`}
           className="img-thumbnail animate__animated animate__fadeInLeft"
           alt={superhero}
+          style={{maxWidth: 250}}
         />
       </div>
 

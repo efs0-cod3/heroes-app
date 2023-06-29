@@ -13,6 +13,7 @@ export const SearchScreen = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    
     if (hero.trim().length <= 1) {
       return;
     }
