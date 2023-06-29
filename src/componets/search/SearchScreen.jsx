@@ -1,7 +1,7 @@
 import { HeroCard } from "../ui/heroes/HeroCard";
 import { useForm } from "../../hook/useForm";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useMemo } from "react";
 import { getHeroByName } from "../../selectors/getHeroByName";
 
 export const SearchScreen = () => {
@@ -11,8 +11,6 @@ export const SearchScreen = () => {
     hero: "",
   });
 
-  const [heroesFiltered, setHeroesFiltered] = useState([]);
-
   const handleSearch = (e) => {
     e.preventDefault();
     if (hero.trim().length <= 1) {
@@ -21,9 +19,13 @@ export const SearchScreen = () => {
 
     setSearchParams({ q: hero });
 
-    setHeroesFiltered(getHeroByName(hero));
     reset();
   };
+
+  const heroesFiltered = useMemo(
+    () => getHeroByName(searchParams.get("q")),
+    [searchParams]
+  );
 
   return (
     <div className="container">
