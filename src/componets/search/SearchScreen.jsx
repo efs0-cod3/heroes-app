@@ -5,7 +5,6 @@ import { useState } from "react";
 import { getHeroByName } from "../../selectors/getHeroByName";
 
 export const SearchScreen = () => {
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [{ hero }, handleInputChange, reset] = useForm({
@@ -24,8 +23,6 @@ export const SearchScreen = () => {
 
     setHeroesFiltered(getHeroByName(hero));
     reset();
-
-
   };
 
   return (
@@ -42,7 +39,6 @@ export const SearchScreen = () => {
               name="hero"
               value={hero}
               autoComplete="off"
-              autoCapitalize="on"
               className="Form control"
               onChange={handleInputChange}
             />
@@ -54,24 +50,25 @@ export const SearchScreen = () => {
             </button>
           </form>
         </div>
-        <div className="col-7">
+        <div className="col-7 ">
           <h4>Results</h4>
           <hr />
-          {  (!searchParams.get('q') && heroesFiltered.length) === 0 && (
+          {(!searchParams.get("q") && heroesFiltered.length) === 0 && (
             <div className="alert alert-info">Busca un heroe</div>
           )}
-          
-          {( searchParams.get('q')  && heroesFiltered.length === 0) && (
-            <div className="alert alert-danger">There is no hero named <strong><em>{searchParams.get('q')}</em></strong></div>
+
+          {searchParams.get("q") && heroesFiltered.length === 0 && (
+            <div className="alert alert-danger">
+              There is no hero named{" "}
+              <strong>
+                <em>{searchParams.get("q")}</em>
+              </strong>
+            </div>
           )}
 
-    <div className="animate__animated animate__fadeIn">
-
           {heroesFiltered?.map((hero) => (
-              <HeroCard key={hero.id} {...hero} />
-              ))}
-              </div>
-
+            <HeroCard key={hero.id} {...hero} />
+          ))}
         </div>
       </div>
     </div>
